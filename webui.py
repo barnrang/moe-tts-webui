@@ -17,6 +17,7 @@ from src.components.info import Info
 from src.components.user_translate import UserTranslate
 from src.basecomponent import BaseComponent
 from src.components.audiosetting import UsedAudioSetting
+from gradio_client import utils as client_utils
 
 translator = Translator()
 
@@ -26,7 +27,7 @@ def audio_postprocess(self, y):
     data = audio_postprocess_ori(self, y)
     if data is None:
         return None
-    return gr_processing_utils.encode_url_or_file_to_base64(data["name"])
+    return client_utils.encode_url_or_file_to_base64(data["name"])
 
 
 gr.Audio.postprocess = audio_postprocess
